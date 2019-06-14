@@ -1,4 +1,5 @@
 const tintColor = '#2f95dc';
+const MAIN_COLOR = '#ffffff'; // eller black
 
 export default {
   tintColor,
