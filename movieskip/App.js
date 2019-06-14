@@ -1,9 +1,14 @@
-import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StatusBar, StyleSheet } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+
+import { store, persistor } from './store';
+
 import AppNavigator from './src/navigation/AppNavigator';
 
-export default class App extends React.Component {
+export default class App extends Component {
   state = {
     isLoadingComplete: false,
   };
@@ -19,10 +24,15 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
+        <Provider store={store} style={styles.container}>
+          <PersistGate
+            loading={null}
+            persistor={persistor}
+          >
+            <StatusBar barStyle="default" backgroundColor="blue" barStyle="light-content" hidden />
+            <AppNavigator />
+          </PersistGate>
+        </Provider>
       );
     }
   }
@@ -41,12 +51,6 @@ export default class App extends React.Component {
         'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
       }),
     ]);
-  };
-
-  _handleLoadingError = error => {
-    // In this case, you might want to report the error to your error
-    // reporting service, for example Sentry
-    console.warn(error);
   };
 
   _handleFinishLoading = () => {

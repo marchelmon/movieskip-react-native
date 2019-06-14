@@ -1,14 +1,23 @@
-import React from 'react';
-import { ExpoConfigView } from '@expo/samples';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { clearLikedJobs } from '../../actions';
 
-export default class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'app.json',
-  };
-
+class SettingsScreen extends Component {
   render() {
-    /* Go ahead and delete ExpoConfigView and replace it with your
-     * content, we just wanted to give you a quick view of your config */
-    return <ExpoConfigView />;
+    return (
+      <View>
+        <Button
+          title="Reset liked jobs"
+          large
+          icon={{ name: 'delete-forever' }}
+          backgroundColor="#F44336"
+          onPress={this.props.clearLikedJobs}
+        />
+      </View>
+    );
   }
 }
+
+export default connect(null, { clearLikedJobs })(SettingsScreen);
