@@ -7,11 +7,11 @@ import { LOGO } from '../../constants/genres';
 //import Swipe from '../components/Swipe';
 //import SwipeCard from '../components/common/SwipeCard';
 
-//import WatchlistScreen from '../screens/WatchlistScreen';
+import WatchlistScreen from '../screens/WatchlistScreen';
 import HomeScreen from '../screens/HomeScreen';
-//import FilterScreen from '../screens/FilterScreen';
-//import WelcomeScreen from '../screens/WelcomeScreen';
-//import ReviewScreen from '../screens/ReviewScreen';
+import FilterScreen from '../screens/FilterScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import ReviewScreen from '../screens/ReviewScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const styles = {
