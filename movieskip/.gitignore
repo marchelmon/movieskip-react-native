@@ -1,0 +1,16 @@
+*/package-lock.json
+package-lock.json
+
+# NODE
+.node_modules
+node_modules
+*/node_modules
+/node_modules/*
+
+.DS_Store
+../.DS_Store
+
+packager-info.json
+*/packager-info.json
+
+.expo
