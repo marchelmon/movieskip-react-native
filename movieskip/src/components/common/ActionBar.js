@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../assets/global_vars';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/layout';
 import ActionButton from './ActionButton';
 
 

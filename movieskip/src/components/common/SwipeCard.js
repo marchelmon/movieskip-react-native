@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../assets/global_vars';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../../constants/layout';
 
 class SwipeCard extends Component {
 

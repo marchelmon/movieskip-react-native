@@ -6,7 +6,7 @@ import {
   PanResponder,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { SCREEN_WIDTH } from '../../assets/global_vars';
+import { SCREEN_WIDTH } from '../../constants/layout';
 import * as actions from '../../actions';
 
 import ActionBar from './common/ActionBar';
