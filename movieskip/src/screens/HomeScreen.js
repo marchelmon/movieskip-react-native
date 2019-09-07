@@ -1,13 +1,89 @@
-import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, Image } from 'react-native';
+import { Card, Button } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+//import { LOGO } from '../../assets/global_vars';
+
+import Swipe from '../components/Swipe';
+import SwipeCard from '../components/common/SwipeCard';
+class HomeScreen extends Component {
+
+  componentWillMount(){
+      this.props.handleContent(this.props.filter);
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams(); //BEHÖVS DENNA?
+  }
+
+  renderCard({ text, poster, id, type, rating, releaseYear }) {
+    return (
+      <SwipeCard
+        title={text}
+        image={{ uri: poster }}
+        key={id}
+        rating={rating}
+        year={releaseYear}
+      />
+    );
+  }
+
+  renderNoMoreCards() {
+    return (
+      <Card title="All done!" style={{ top: 40, bottom: 20 }}>
+        <Text style={{ marginBottom: 10 }}>
+          Content is empty
+        </Text>
+        <Button
+          title="Get more"
+        />
+      </Card>
+    );
+  }
+
+  render() {
+    return(
+      <Swipe
+        data={this.props.content}
+        renderCard={this.renderCard}
+        renderNoMore={this.renderNoMoreCards}
+      />
+    );
+  }
+}
+
+const styles = {
+  loading: {
+    position: 'absolute',
+    zIndex: 10000,
+    alignItems: 'center',
+    width: 300,
+    height: 300,
+    backgroundColor: '#fff'
+  },
+  iconStyle: {
+    width: 27,
+    height: 27,
+    marginRight: 1,
+    marginLeft: 1,
+    padding: 10
+  }
+};
+
+const mapStateToProps = (state) => {
+  return {
+    content: state.filter.content,
+    filter: state.filter
+  };
+};
+
+export default connect(mapStateToProps, actions)(HomeScreen);
+
+
+
+/*
+
 import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
@@ -16,6 +92,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
+
 
   render() {
     return (
@@ -186,3 +263,5 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+*/
