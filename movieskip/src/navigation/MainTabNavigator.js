@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, Image, Text, View } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation';
+import { createStackNavigator, createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 
 import { LOGO } from '../../constants/genres';
 
@@ -19,7 +19,7 @@ const styles = {
     height: 65,
     backgroundColor: '#ffffff',
     shadowColor: 'transparent',
-  }, 
+  },
   iconStyle: {
     width: 27,
     height: 27,
@@ -30,11 +30,7 @@ const styles = {
   }
 };
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
-
-HomeStack.navigationOptions = {
+HomeScreen.navigationOptions = {
   tabBarLabel: ({ focused }) => {
     if(focused) {
       return (
@@ -45,7 +41,7 @@ HomeStack.navigationOptions = {
         />
       );
     } else {
-      return (        
+      return (
         <Image
           source={LOGO}
           style={[styles.iconStyle, { opacity: 0.5 }]}
@@ -56,7 +52,7 @@ HomeStack.navigationOptions = {
 };
 
 
-/* Standard med både icon och label 
+/* Standard med både icon och label
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
@@ -88,7 +84,7 @@ SettingsStack.navigationOptions = {
         />
       );
     } else {
-      return (        
+      return (
         <Image
           source={LOGO}
           style={[styles.iconStyle, { opacity: 0.5 }]}
@@ -98,14 +94,14 @@ SettingsStack.navigationOptions = {
   }
 };
 
-export default createMaterialTopTabNavigator(
+const navigator = createMaterialTopTabNavigator(
   {
-    settings: SettingsStack,
-    HomeStack,
-    SettingsStack,
+    settings: HomeScreen,
+    home: HomeScreen,
+    hej: HomeScreen,
   },
   {
-    initialRouteName: 'HomeStack',
+    initialRouteName: 'home',
     swipeEnabled: false,
     tabBarOptions: {
       showLabel: true,
@@ -131,15 +127,11 @@ export default createMaterialTopTabNavigator(
   }
 );
 
+export default createAppContainer(navigator);
+
 
 /*
 
-const MainTab = createMaterialTopTabNavigator(
-  {
-    Watchlist: WatchlistScreen,
-    Home: HomeScreen,
-    Welcome: WelcomeScreen,
-  },
   {
     initialRouteName: 'Home',
     swipeEnabled: false,
@@ -167,66 +159,4 @@ const MainTab = createMaterialTopTabNavigator(
   }
 );
 
-const MainStack = createStackNavigator(
-  {
-    Main: MainTab,
-    Manage: ManageTab
-  },
-  {
-    initialRouteName: 'Main',
-    headerMode: 'none',
-  }
-);
-
-const RootStack = createStackNavigator(
-  {
-    Ma: MainTab,
-    Main: MainStack,
-    Filter: FilterScreen
-  },
-  {
-    mode: 'modal',
-    headerMode: 'none',
-    cardStyle: {
-      backgroundColor: '#f6f6f6',
-    },
-  }
-);
-
-
-
-
-
-
-
-const ManageTab = createMaterialTopTabNavigator(
-  {
-    Watchlist: WatchlistScreen,
-    Review: ReviewScreen,
-    Settings: SettingsScreen
-  },
-  {
-    initialRouteName: 'Watchlist',
-    swipeEnabled: false,
-    tabBarOptions: {
-      showLabel: true,
-      style: styles.tabStyle,
-      tabStyle: styles.tabStyle,
-      inactiveTintColor: '#d3d3d3',
-      activeTintColor: '#0f82f5',
-      indicatorStyle: {
-        display: 'none'
-      }
-    },
-    navigationOptions: ({ navigation }) => ({
-      tabBarOnPress: (scene, jumpToIndex) => {
-        if (scene.navigation.isFocused()) {
-          navigation.navigate('Filter');
-        } else {
-          navigation.navigate(scene.navigation.state.routeName);
-        }
-      }
-    })
-  }
-);
 */

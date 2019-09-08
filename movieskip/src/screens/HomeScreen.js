@@ -14,7 +14,7 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams(); //BEHÖVS DENNA?
+    //this.props.navigation.setParams(); //BEHÖVS DENNA?
   }
 
   renderCard({ text, poster, id, type, rating, releaseYear }) {
@@ -47,7 +47,7 @@ class HomeScreen extends Component {
       <Swipe
         data={this.props.content}
         renderCard={this.renderCard}
-        renderNoMore={this.renderNoMoreCards}
+        renderNoMoreCards={this.renderNoMoreCards}
       />
     );
   }

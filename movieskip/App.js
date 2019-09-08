@@ -6,7 +6,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { store, persistor } from './store';
 
-import AppNavigator from './src/navigation/AppNavigator';
+import MainTabNavigator from './src/navigation/MainTabNavigator';
+
 
 export default class App extends Component {
   state = {
@@ -30,7 +31,7 @@ export default class App extends Component {
             persistor={persistor}
           >
             <StatusBar barStyle="default" backgroundColor="blue" barStyle="light-content" hidden />
-            <AppNavigator />
+            <MainTabNavigator />
           </PersistGate>
         </Provider>
       );
